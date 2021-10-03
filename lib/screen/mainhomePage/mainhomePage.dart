@@ -3,8 +3,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sunshine/data/data.dart';
+import 'package:sunshine/screen/dashboard/calculator.dart';
 import 'package:sunshine/screen/dashboard/history_data2.dart';
 import 'package:sunshine/screen/dashboard/map_display.dart';
+import 'package:sunshine/screen/dashboard/today.dart';
 import 'package:sunshine/screen/mainhomePage/solar_card.dart';
 import 'Widgets/category_card.dart';
 import 'Widgets/BottomNavItem.dart';
@@ -27,7 +29,7 @@ class mainhomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             BottomNavItem(
-              title: "Home",
+              title: "Today",
               svgScr: "icons/icons/homepage.svg",
               press: () {
                 Navigator.push(
@@ -35,7 +37,7 @@ class mainhomePage extends StatelessWidget {
                   MaterialPageRoute(builder: (context) => mainhomePage()),
                 );
               },
-              isActive: true,
+              isActive: false,
             ),
             BottomNavItem(
               title: "Data",
@@ -49,12 +51,12 @@ class mainhomePage extends StatelessWidget {
               isActive: false,
             ),
             BottomNavItem(
-              title: "Map",
-              svgScr: "icons/icons/map.svg",
+              title: "Analytic",
+              svgScr: "icons/icons/calendar.svg",
               press: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => MapDisplay()),
+                  MaterialPageRoute(builder: (context) => LineChartPage()),
                 );
               },
               isActive: false,
@@ -164,7 +166,13 @@ class mainhomePage extends StatelessWidget {
                         CategoryCard(
                           title: "Solar Calculator",
                           svgSrc: "icons/icons/calculator.svg",
-                          press: () {},
+                          press: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Calculator()),
+                            );
+                          },
                         ),
                       ],
                     ),
