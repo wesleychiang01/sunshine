@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:sunshine/screen/dashboard/today.dart';
 import 'package:sunshine/screen/mainhomePage/Widgets/BottomNavItem.dart';
 import 'package:sunshine/screen/mainhomePage/mainhomePage.dart';
 
@@ -53,7 +54,7 @@ class _HistoryData2State extends State<HistoryData2> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             BottomNavItem(
-              title: "Home",
+              title: "Today",
               svgScr: "icons/icons/homepage.svg",
               press: () {
                 Navigator.push(
@@ -61,7 +62,7 @@ class _HistoryData2State extends State<HistoryData2> {
                   MaterialPageRoute(builder: (context) => mainhomePage()),
                 );
               },
-              isActive: true,
+              isActive: false,
             ),
             BottomNavItem(
               title: "Data",
@@ -75,9 +76,14 @@ class _HistoryData2State extends State<HistoryData2> {
               isActive: false,
             ),
             BottomNavItem(
-              title: "Today",
+              title: "Analytic",
               svgScr: "icons/icons/calendar.svg",
-              press: () {},
+              press: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => LineChartPage()),
+                );
+              },
               isActive: false,
             ),
             BottomNavItem(
@@ -100,160 +106,160 @@ class _HistoryData2State extends State<HistoryData2> {
             itemBuilder: (context, index) {
               return Center(
                   child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Stack(
-                  children: <Widget>[
-                    Container(
-                        height: 150,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(_borderRadius),
-                            gradient: LinearGradient(
-                                colors: [
-                                  items[index].startColor,
-                                  items[index].endColor
-                                ],
-                                begin: Alignment.topLeft,
-                                end: Alignment.bottomRight),
-                            boxShadow: [
-                              BoxShadow(
-                                color: items[index].endColor,
-                                blurRadius: 12,
-                                offset: Offset(0, 6),
-                              )
-                            ])),
-                    Positioned(
-                      right: 0,
-                      bottom: 0,
-                      top: 0,
-                      child: CustomPaint(
-                        size: Size(100, 150),
-                        painter: CustomCardShapePainter(
-                            _borderRadius, Colors.pink, Colors.red),
-                      ),
-                    ),
-                    Positioned.fill(
-                      child: Row(
-                        children: <Widget>[
-                          Expanded(
-                            flex: 4,
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Row(children: <Widget>[
-                                  SizedBox(
-                                    width: 20,
-                                  ),
-                                  Text(
-                                    items[index].name,
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 27,
-                                        fontFamily: 'Avenir',
-                                        fontWeight: FontWeight.w700),
-                                  ),
-                                ]),
-                                SizedBox(height: 12),
-                                Row(children: <Widget>[
-                                  SizedBox(
-                                    width: 20,
-                                  ),
-                                  Text(
-                                    'Temperature                       ',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 15,
-                                      fontFamily: 'Avenir',
-                                    ),
-                                  ),
-                                  Text(
-                                    items[index].temp + 'C',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 15,
-                                      fontFamily: 'Avenir',
-                                    ),
-                                  ),
-                                ]),
-                                SizedBox(height: 4),
-                                Row(children: <Widget>[
-                                  SizedBox(
-                                    width: 20,
-                                  ),
-                                  Text(
-                                    'Specific Humidity (2m)     ',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 15,
-                                      fontFamily: 'Avenir',
-                                    ),
-                                  ),
-                                  Text(
-                                    items[index].humidity + 'g/kg',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 15,
-                                      fontFamily: 'Avenir',
-                                    ),
-                                  ),
-                                ]),
-                                SizedBox(height: 4),
-                                Row(children: <Widget>[
-                                  SizedBox(
-                                    width: 20,
-                                  ),
-                                  Text(
-                                    'Wind Speed（2m)             ',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 15,
-                                      fontFamily: 'Avenir',
-                                    ),
-                                  ),
-                                  Text(
-                                    items[index].wind + 'm/s',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 15,
-                                      fontFamily: 'Avenir',
-                                    ),
-                                  ),
-                                ]),
-                                SizedBox(height: 4),
-                                Row(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Stack(
+                      children: <Widget>[
+                        Container(
+                            height: 150,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(_borderRadius),
+                                gradient: LinearGradient(
+                                    colors: [
+                                      items[index].startColor,
+                                      items[index].endColor
+                                    ],
+                                    begin: Alignment.topLeft,
+                                    end: Alignment.bottomRight),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: items[index].endColor,
+                                    blurRadius: 12,
+                                    offset: Offset(0, 6),
+                                  )
+                                ])),
+                        Positioned(
+                          right: 0,
+                          bottom: 0,
+                          top: 0,
+                          child: CustomPaint(
+                            size: Size(100, 150),
+                            painter: CustomCardShapePainter(
+                                _borderRadius, Colors.pink, Colors.red),
+                          ),
+                        ),
+                        Positioned.fill(
+                          child: Row(
+                            children: <Widget>[
+                              Expanded(
+                                flex: 4,
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: <Widget>[
-                                    SizedBox(
-                                      width: 20,
-                                    ),
-                                    Text(
-                                      'Cloud Amount                    ',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 15,
-                                        fontFamily: 'Avenir',
+                                    Row(children: <Widget>[
+                                      SizedBox(
+                                        width: 20,
                                       ),
-                                    ),
-                                    Flexible(
-                                      child: Text(
-                                        items[index].cloud + '%',
+                                      Text(
+                                        items[index].name,
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 27,
+                                            fontFamily: 'Avenir',
+                                            fontWeight: FontWeight.w700),
+                                      ),
+                                    ]),
+                                    SizedBox(height: 12),
+                                    Row(children: <Widget>[
+                                      SizedBox(
+                                        width: 20,
+                                      ),
+                                      Text(
+                                        'Temperature                       ',
                                         style: TextStyle(
                                           color: Colors.white,
                                           fontSize: 15,
                                           fontFamily: 'Avenir',
                                         ),
                                       ),
+                                      Text(
+                                        items[index].temp + 'C',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 15,
+                                          fontFamily: 'Avenir',
+                                        ),
+                                      ),
+                                    ]),
+                                    SizedBox(height: 4),
+                                    Row(children: <Widget>[
+                                      SizedBox(
+                                        width: 20,
+                                      ),
+                                      Text(
+                                        'Specific Humidity (2m)     ',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 15,
+                                          fontFamily: 'Avenir',
+                                        ),
+                                      ),
+                                      Text(
+                                        items[index].humidity + 'g/kg',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 15,
+                                          fontFamily: 'Avenir',
+                                        ),
+                                      ),
+                                    ]),
+                                    SizedBox(height: 4),
+                                    Row(children: <Widget>[
+                                      SizedBox(
+                                        width: 20,
+                                      ),
+                                      Text(
+                                        'Wind Speed（2m)             ',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 15,
+                                          fontFamily: 'Avenir',
+                                        ),
+                                      ),
+                                      Text(
+                                        items[index].wind + 'm/s',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 15,
+                                          fontFamily: 'Avenir',
+                                        ),
+                                      ),
+                                    ]),
+                                    SizedBox(height: 4),
+                                    Row(
+                                      children: <Widget>[
+                                        SizedBox(
+                                          width: 20,
+                                        ),
+                                        Text(
+                                          'Cloud Amount                    ',
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 15,
+                                            fontFamily: 'Avenir',
+                                          ),
+                                        ),
+                                        Flexible(
+                                          child: Text(
+                                            items[index].cloud + '%',
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 15,
+                                              fontFamily: 'Avenir',
+                                            ),
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ],
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-              ));
+                  ));
             }),
       ),
     );
